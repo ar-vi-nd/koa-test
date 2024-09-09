@@ -27,11 +27,11 @@ productRouter.get("/",async (ctx,next)=>{
         console.log(error);
     }
 })
-.patch("/",async (ctx,next)=>{
+.patch("/:id",async (ctx,next)=>{
     try {
-
-        console.log(ctx.request.body);
-        // const product = await Product.findByIdAndUpdate(ctx.request.body._id,ctx.request.body,{new:true});
+        const {id} = ctx.params
+        console.log(id,ctx.request.body);
+        const product = await Product.findByIdAndUpdate(id,ctx.request.body,{new:true});
         ctx.body = product;
     } catch (error) {
         console.log(error);
